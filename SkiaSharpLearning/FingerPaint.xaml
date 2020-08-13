@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SkiaSharpLearning.FingerPaint"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:tt="clr-namespace:SkiaSharpLearning"
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker">
+
+    <StackLayout Orientation="Vertical" Margin="0,40,0,0">
+        <Entry Placeholder="Text" x:Name="Entry" IsVisible="True" Focused="Entry_Focused" Unfocused="Entry_Unfocused" TextChanged="Entry_TextChanged"/>
+        <ScrollView HorizontalScrollBarVisibility="Always">
+        <StackLayout Orientation="Horizontal">
+            
+            <colorpicker:ColorWheel x:Name="ColorWheel1" HeightRequest="100" WidthRequest="100"
+                                ShowAlphaSlider="False"
+                                ShowLuminositySlider="False"
+                                ShowLuminosityWheel="False"
+                                IsVisible="True"
+                                Vertical="True"
+                                Padding="5"
+                                Grid.Row="1"
+                                />
+            <StackLayout>
+
+            </StackLayout>
+            <Button Text="Clear" Clicked="Button_Clicked" HeightRequest="20" WidthRequest="50" />
+            <Button Text="Box" Clicked="SetBox" HeightRequest="20" WidthRequest="50"/>
+            <Button Text="Pen" Clicked="SetPen" HeightRequest="20" WidthRequest="50"/>
+            <Button Text="Text" Clicked="SetText" HeightRequest="20" WidthRequest="50"/>
+            <Button Text="Undo" Clicked="Undo" HeightRequest="20" WidthRequest="50"/>
+            
+        </StackLayout>
+        </ScrollView>
+        
+    <Grid VerticalOptions="FillAndExpand">
+        <skia:SKCanvasView x:Name="canvasView"
+                           PaintSurface="canvasView_PaintSurface"></skia:SKCanvasView>
+        <Grid.Effects>
+            <tt:TouchEffect Capture="True"
+                            TouchAction="TouchEffect_TouchAction" />
+        </Grid.Effects>
+    </Grid>
+        </StackLayout>
+</ContentPage>
